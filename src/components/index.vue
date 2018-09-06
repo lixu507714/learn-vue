@@ -48,7 +48,6 @@
     <input type="text" v-model="name">
     <p>{{name}}</p>
   </div>
-
 </template>
 
 <script>
@@ -61,6 +60,7 @@
        x:0,
        y:0,
        count:0,
+       count1:0,
        title:'HelloWorld',
        link:'http://google.com',
        finishLink:'<a href="http://google.com">Google</a>',
@@ -90,7 +90,7 @@
         return this.count > 5 ? 'Greater 5':"Smaller than 5";
       },
       increase:function() {
-        this.count +=1;
+        this.count1 +=1;
       },
       updateCoordinates:function(event) {
 //        console.log(event);
