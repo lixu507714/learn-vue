@@ -36,7 +36,7 @@
     <button v-on:click="increase">Click me</button>
     <button v-on:click="count++">Click me</button>
     <p>{{count*2 >10 ?'Greater than 10':'Smaller than 10'}}</p>
-    <p>count:{{count}}</p>
+    <p>count:{{num}}</p>
     <p>result:{{result()}} | {{output}}</p>
     <p v-on:mousemove="updateCoordinates($event)">Coordinates: {{x}} / {{y}} -
       <span v-on:mousemove.stop="">DEAD SPOT</span>
@@ -47,6 +47,16 @@
     <input type="text" v-on:keyup.enter.space="alertMe">
     <input type="text" v-model="name">
     <p>{{name}}</p>
+
+
+    <!--样式-->
+    <div>
+      <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+      <div class="demo" :class="{red:attachRed}"></div>
+      <div class="demo" :class="[color,{red:attachRed}]"></div>
+      <div class="demo" :style="{backgroundColor:color}"></div>
+      <input type="text" v-model="color">
+    </div>
   </div>
 
 </template>
@@ -57,10 +67,13 @@
     component:{HelloWorld:HelloWorld},
     data(){
      return {
+       attachRed:false,
+       color:'green',
        name:'李旭',
        x:0,
        y:0,
        count:0,
+       num:0,
        title:'HelloWorld',
        link:'http://google.com',
        finishLink:'<a href="http://google.com">Google</a>',
@@ -90,7 +103,7 @@
         return this.count > 5 ? 'Greater 5':"Smaller than 5";
       },
       increase:function() {
-        this.count +=1;
+        this.num +=1;
       },
       updateCoordinates:function(event) {
 //        console.log(event);
@@ -104,6 +117,13 @@
     computed:{
       output:function() {
         return this.count > 5 ? 'Greater 5':"Smaller than 5";
+      },
+
+      divClasses: function() {
+        return {
+          red:this.attachRed,
+          blue:!this.attachRed
+        }
       }
     },
     watch:{
@@ -119,5 +139,20 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .demo{
+    width: 100px;
+    height:100px;
+    background: gray;
+    display: inline-block;
+    margin:10px;
+  }
+  .red{
+    background: red;
+  }
+  .blue{
+    background: blue;
+  }
+  .green{
+    background: green;
+  }
 </style>
