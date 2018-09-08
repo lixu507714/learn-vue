@@ -64,6 +64,7 @@
 <script>
   import HelloWorld from './HelloWorld.vue';
   export default {
+    name: 'Index',
     component:{HelloWorld:HelloWorld},
     data(){
      return {
