@@ -1,5 +1,18 @@
 vue简单知识点：
 
+
+
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+
+el 限制了vue 实例处理dom 范围。
+数据管理，不需要担心dom管理。
+没有操作dom 直接操作数据
+
 （1）、点击事件
 ```
   <button @click="show=!show">switch</button>
