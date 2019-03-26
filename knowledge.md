@@ -13,6 +13,30 @@ el 限制了vue 实例处理dom 范围。
 数据管理，不需要担心dom管理。
 没有操作dom 直接操作数据
 
+？ 啥是MVP的设计模式
+
+
+虚拟dom
+
+
+
+props 从父组建接受值。
+
+
+vue 传值:
+子组件向父组件传值：
+方法里写 $emit
+父组件向子组件传值：v-bind（父组件通过 props 向下传递数据给子组件）
+
+angular 传值：
+子组件向父组件传数据：@Output,子组件需要实例化EventEmitter类来订阅和触发自定义事件
+父组件向子组件传值：@Input
+
+
+
+
+
+
 （1）、点击事件
 ```
   <button @click="show=!show">switch</button>
@@ -106,3 +130,58 @@ new Vue({
 ```
 
 
+冒泡排序
+
+
+```
+
+  let defArr = [1,2,4,3,0];
+  let defArr1 = [0,1,2,3,4];
+  let defArr2 = [1,2,3,4,0];
+  let defArr3 = [4,1,2,3,0];
+
+  //有问题 [1, 2, 3, 0, 4]
+  function sort1(arr){
+    for(let i=1; i<arr.length; i++){
+      let currentVal = arr[i];
+      if(arr[i] < arr[i-1]){
+        arr[i] = arr[i-1];
+        arr[i-1] = currentVal;
+      }
+    }
+    return arr;
+  }
+  console.log(sort1(defArr));
+
+  function sort2(arr){
+    for(let i=0; i<arr.length; i++){
+      for(let j=i+1; j<arr.length; j++){
+        let currentVal = arr[i];
+        if(arr[i] > arr[j]){
+          arr[i] = arr[j];
+          arr[j] = currentVal;
+        }
+
+      }
+    }
+    return arr;
+  }
+  console.log(sort2(defArr));
+
+  function sort3(arr){
+    for(let i=0; i<arr.length-1; i++){
+      if(arr[i] > arr[i+1]){
+        for(let j=0; j<=i; j++){
+          let currentVal = arr[i+1];
+          if(arr[i+1] < arr[j]){
+            arr[i+1] = arr[j];
+            arr[j] = currentVal;
+          }
+        }
+      }
+    }
+    return arr;
+  }
+  console.log(sort3(defArr2));
+
+```
