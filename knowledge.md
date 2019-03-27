@@ -16,7 +16,7 @@ el 限制了vue 实例处理dom 范围。
 ？ 啥是MVP的设计模式
 
 
-虚拟dom
+虚拟dom？？？？？
 
 
 
@@ -33,9 +33,22 @@ angular 传值：
 父组件向子组件传值：@Input
 
 
+vue 中的 vm.$，是vue 的实例属性和实例方法 。
+vue 的生命周期钩子：
+生命周期函数就是vue实例在某一个时间点会自动执行的函数。
+需要注意的是vue的生命周期函数不放在methods对象里面。单独的放在实例就可以？？？
+beforeCreate 
+created
+beforeMount
+mounted  页面渲染完毕之后
+beforeDestory
+destory
+当数据发生改变的时候
+beforeUpdate  重新渲染之前
+updated       当重新渲染之后执行
 
 
-
+Object.defineProperty
 
 （1）、点击事件
 ```
