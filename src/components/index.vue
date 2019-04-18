@@ -12,17 +12,14 @@
     <button @click="show=!show">switch</button>
     <button v-on:click="show=!show">switch</button>
 
-
     <!--html-->
     <p>{{sayHello()}} - <a v-bind:href="link">Google</a></p>
     <p v-html="finishLink"></p>
-
 
     <!--v-once-->
     <p v-once>{{title}}</p>
     <p>{{title}}</p>
     <input type="text" v-model = "title" name="">
-
 
     <!--for循环-->
     <ul>
@@ -30,7 +27,6 @@
        ({{i}})、 {{ingredient}}
       </li>
     </ul>
-
 
     <!--watch methods  computed-->
     <button v-on:click="increase">Click me</button>
@@ -42,12 +38,10 @@
       <span v-on:mousemove.stop="">DEAD SPOT</span>
     </p>
 
-
     <!--绑定-->
     <input type="text" v-on:keyup.enter.space="alertMe">
     <input type="text" v-model="name">
     <p>{{name}}</p>
-
 
     <!--样式-->
     <div>
@@ -62,80 +56,80 @@
 </template>
 
 <script>
-  import HelloWorld from './HelloWorld.vue';
-  export default {
-    name: 'Index',
-    component:{HelloWorld:HelloWorld},
-    data(){
-     return {
-       attachRed:false,
-       color:'green',
-       name:'李旭',
-       x:0,
-       y:0,
-       count:0,
-       num:0,
-       title:'HelloWorld',
-       link:'http://google.com',
-       finishLink:'<a href="http://google.com">Google</a>',
-       show:true,
-       person:[
-         {
-           name:'lx',
-           age:25,
-           color:'red'
-         },
-         {
-           name:'lxxx',
-           age:25,
-           color:'blue'
-         }
-       ],
-       ingredients:['meat','fruit','cookies']
-     }
-    },
-
-    methods:{
-      sayHello:function() {
-        this.title = '33'+ Math.random();
-        return this.title;
-      },
-      result() {
-        return this.count > 5 ? 'Greater 5':"Smaller than 5";
-      },
-      increase:function() {
-        this.num +=1;
-      },
-      updateCoordinates:function(event) {
-//        console.log(event);
-//        this.x= event.clientX;
-//        this.y= event.clientY;
-      },
-      alertMe:function() {
-        alert('Alert!');
-      }
-    },
-    computed:{
-      output:function() {
-        return this.count > 5 ? 'Greater 5':"Smaller than 5";
-      },
-
-      divClasses: function() {
-        return {
-          red:this.attachRed,
-          blue:!this.attachRed
+import HelloWorld from './HelloWorld.vue'
+export default {
+  name: 'Index',
+  component: {HelloWorld: HelloWorld},
+  data () {
+    return {
+      attachRed: false,
+      color: 'green',
+      name: '李旭',
+      x: 0,
+      y: 0,
+      count: 0,
+      num: 0,
+      title: 'HelloWorld',
+      link: 'http://google.com',
+      finishLink: '<a href="http://google.com">Google</a>',
+      show: true,
+      person: [
+        {
+          name: 'lx',
+          age: 25,
+          color: 'red'
+        },
+        {
+          name: 'lxxx',
+          age: 25,
+          color: 'blue'
         }
-      }
+      ],
+      ingredients: ['meat', 'fruit', 'cookies']
+    }
+  },
+
+  methods: {
+    sayHello: function () {
+      this.title = '33' + Math.random()
+      return this.title
     },
-    watch:{
-      count:function (value) {
-        var vm = this;
-        setTimeout(function() {
-          vm.count = 0;
-        },2000)
+    result () {
+      return this.count > 5 ? 'Greater 5' : 'Smaller than 5'
+    },
+    increase: function () {
+      this.num += 1
+    },
+    updateCoordinates: function (event) {
+      //        console.log(event);
+      //        this.x= event.clientX;
+      //        this.y= event.clientY;
+    },
+    alertMe: function () {
+      alert('Alert!')
+    }
+  },
+  computed: {
+    output: function () {
+      return this.count > 5 ? 'Greater 5' : 'Smaller than 5'
+    },
+
+    divClasses: function () {
+      return {
+        red: this.attachRed,
+        blue: !this.attachRed
       }
     }
+  },
+  watch: {
+    count: function (value) {
+      var vm = this
+      setTimeout(function () {
+        vm.count = 0
+      }, 2000)
+    }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

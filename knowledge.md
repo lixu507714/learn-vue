@@ -23,15 +23,28 @@ el 限制了vue 实例处理dom 范围。
 props 从父组建接受值。
 
 
-vue 传值:
-子组件向父组件传值：
-方法里写 $emit
-父组件向子组件传值：v-bind（父组件通过 props 向下传递数据给子组件）
+vue 传值: 单项数据流，子组件不能修改父组件传过来的数据。
+子组件向父组件传值：通过change事件。@Output
+方法里写 $emit。
+父组件向子组件传值：通过属性的方式，v-bind（父组件通过 props 向下传递数据给子组件）
 
 angular 传值：
 子组件向父组件传数据：@Output,子组件需要实例化EventEmitter类来订阅和触发自定义事件
 父组件向子组件传值：@Input
 
+组件的参数校验和非props特性。
+子组件接受参数props可以定义参数类型。（视频4-5）
+
+生命周期钩子：mounted函数
+
+
+非父子组件传值：
+vuex：
+发布订阅模式/观察者模式/Bus/总线：
+
+
+
+vue 中的插槽（slot）
 
 vue 中的 vm.$，是vue 的实例属性和实例方法 。
 vue 的生命周期钩子：
@@ -50,6 +63,20 @@ updated       当重新渲染之后执行
 
 Object.defineProperty
 
+
+
+
+
+计算属性：（compluted）。不同的是计算属性是基于它们的响应式依赖进行缓存的。
+内置缓存的。（如果值没有改变，不会重新计算）
+
+计算属性的getter和setter：
+get 拿值，set设置值。
+
+
+侦听器：（watch）
+
+
 （1）、点击事件
 ```
   <button @click="show=!show">switch</button>
@@ -58,22 +85,23 @@ Object.defineProperty
 (2)、判断条件
 
 ```
-<p v-if="show">you can see me</p>
+<p v-if="show">you can see me</p> 删除dom，性能相对低一些。
 <p v-show="show">do you also see me?</p>
-v-show相当于是给此标签添加css属性：display:none;
+v-show相当于是给此标签添加css属性：display:none; dom 依然是存在的。
 v-if相当于是remove
 ```
-(3)、for循环
+(3)、for循环 数组
 ```
 <!-- v-for循环数组 当用for来更新已被渲染的元素时，vue的“就地复用”机制 是不会改变数据项的顺序的。要想重新排序，需为每项添加key属性（也就是每项唯一的id） -->
 <li v-for="(ingredient, i) in ingredients" :key='ingredient'>
         {{ingredient}}{{i}}
 </li>
- <!-- 会改变原始数组的方法，为变异方法 例如push(),pop()等；  非变异方法，不会改变原始数组，但是会返回一个新数组 -->
-
+ <!-- 会改变原始数组的方法，为变异方法 例如push(),pop(),shift(),unshift(),splice(),sort(),reverse()等；  非变异方法，不会改变原始数组，但是会返回一个新数组 -->
+会改变原始数组的方法还可以改变数组的引用。
+vue.set()
 ```
 
-(4)、v-once
+(4)、v-once 
 
 只渲染元素和组件一次，随后的渲染，使用了此指令的元素/组件及其所有的子节点，都会当作静态内容并跳过，这可以用于优化更新性能。
 ```
@@ -141,6 +169,22 @@ new Vue({
  
  而methods下的数据，是每次都会进行计算的 
 ```
+
+class样式的改变：
+1 class可以跟一个对象绑定，对象里面定义变量
+2 class可以跟一个数组相绑定
+
+
+
+（7）vue.set()
+1/往对象上加一个新的数据，可以用实例上的vm.$set.
+2/vue.set( target, key, value )
+
+
+(8)组件使用的细节点
+1、引用组件的时候要注意标签的使用，比如用table的话，里面要用is属性去使用组件，不然会出现bug。
+2、在自组件定义data的时候，data必须是一个函数，不能是一个对象。然后return 对象数据。因为子组件kennel被调用多次。每一个自组件都应该有自己的数据。
+3、ref。ref操作dom节点。
 
 
 冒泡排序
